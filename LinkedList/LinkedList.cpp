@@ -25,6 +25,30 @@ int LinkedList::GetSize() {
     return this->size;
 }
 
+void LinkedList::InsertAtHead(int value) {
+
+}
+
+void LinkedList::InsertAtPosition(int value, int position) {
+
+}
+
+void LinkedList::InsertAtTail(int value) {
+
+}
+
+void LinkedList::RemoveFromHead() {
+
+}
+
+void LinkedList::RemoveFromPosition(int position) {
+
+}
+
+void LinkedList::RemoveFromTail() {
+    
+}
+
 //struct LinkedListStruct {
 //
 //
