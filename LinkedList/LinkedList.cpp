@@ -6,29 +6,47 @@ struct Node {
     struct Node *next;
 };
 
-struct LinkedList {
+LinkedList::LinkedList()  {
+    Node *head = nullptr;
+    Node *tail = nullptr;
+    int size = 0;
+}
 
-    Node *head;
-    Node *tail;
-    int size;
+LinkedList LinkedList::CreateLinkedList() {
+    LinkedList link = LinkedList();
+    return link;
+}
 
-    LinkedList() {
-        head = nullptr;
-        tail = nullptr;
-    }
+bool LinkedList::IsEmpty() {
+    return this->size == 0;
+}
 
-    LinkedList CreateLinkedList() {
-        LinkedList list = LinkedList();
-        list.size = 0;
-        return list;
-    }
+int LinkedList::GetSize() {
+    return this->size;
+}
 
-    bool IsEmpty() {
-        return this->size == 0;
-    }
-
-    int GetSize() {
-        return this->size;
-    }
-};
+//struct LinkedListStruct {
+//
+//
+//    int size;
+//
+//    LinkedListStruct() {
+//        head = nullptr;
+//        tail = nullptr;
+//    }
+//
+//    LinkedListStruct CreateLinkedList() {
+//        LinkedListStruct list = LinkedListStruct();
+//        list.size = 0;
+//        return list;
+//    }
+//
+//    bool IsEmpty() {
+//        return this->size == 0;
+//    }
+//
+//    int GetSize() {
+//        return this->size;
+//    }
+//};
 
