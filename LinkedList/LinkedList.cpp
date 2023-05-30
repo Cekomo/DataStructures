@@ -40,6 +40,8 @@ void LinkedList::InsertAtHead(int value) {
         newNode->next = this->head;
         this->head = newNode;
     }
+
+    this->size = this->size + 1;
 }
 
 void LinkedList::InsertAtTail(int value) {
@@ -50,16 +52,17 @@ void LinkedList::InsertAtTail(int value) {
     }
     else {
         Node *currentNode = this->head;
-        for (int i = 0; i < this->size; i++) {
-            if (currentNode->next == nullptr) {
-                // we found the last node placement
-            }
+        while (currentNode->next != nullptr) {
+            currentNode = currentNode->next;
         }
+
+        currentNode->next = newNode;
+        }
+
+    this->size = this->size + 1;
     }
-}
 
 void LinkedList::InsertAtPosition(int value, int position) {
-
 
 }
 
