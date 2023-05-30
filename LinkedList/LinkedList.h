@@ -17,8 +17,18 @@ public:
     void RemoveFromPosition(int);
     void RemoveFromTail();
 
+    ~LinkedList();
+
 private:
-    struct Node;
+    struct Node {
+        int data;
+        Node *next;
+
+        Node(int value);
+    };
+
+    Node *head;
+    Node *tail; // may be trivial
     int size;
 };
 
