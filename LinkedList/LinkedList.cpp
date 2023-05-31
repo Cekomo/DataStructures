@@ -85,6 +85,7 @@ void LinkedList::InsertAtPosition(int value, int position) {
 
 void LinkedList::RemoveFromHead() {
     if (head == nullptr) return;
+    size = size - 1;
 
     Node *firstNode = head;
     head = firstNode->next;
@@ -94,6 +95,7 @@ void LinkedList::RemoveFromHead() {
 
 void LinkedList::RemoveFromTail() {
     if (head == nullptr) return;
+    size = size - 1;
 
     if (head->next == nullptr) {
         delete head;
@@ -113,7 +115,27 @@ void LinkedList::RemoveFromTail() {
 }
 
 void LinkedList::RemoveFromPosition(int position) {
+    if (head == nullptr || position < 0) return;
+    size = size - 1;
 
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node *currentNode = head;
+    Node *previousNode = nullptr;
+    int posCounter = 0;
+    while (posCounter < position && currentNode->next != nullptr) {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+        posCounter++;
+    }
+
+    // head may not be handled when position=0 and multiple nodes present
+    previousNode->next = currentNode->next;
+    delete currentNode;
 }
 
 LinkedList::~LinkedList()  {
