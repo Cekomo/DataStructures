@@ -63,7 +63,34 @@ void LinkedList::InsertAtTail(int value) {
     }
 
 void LinkedList::InsertAtPosition(int value, int position) {
+    Node *newNode = new Node(value);
 
+    if (position == 0) {
+        newNode->next = this->head;
+        this->head = newNode;
+    }
+    else {
+        Node *currentNode = this->head;
+        int posCounter = 0;
+
+        while (posCounter < position - 1 && currentNode != nullptr) {
+            currentNode = currentNode->next;
+            posCounter++;
+        }
+        if (currentNode != nullptr) {
+            newNode->next = currentNode->next;
+            currentNode->next = newNode;
+        }
+        else { // if position out of range, assign it at tail's place
+            Node* lastNode = this->head;
+            while (lastNode->next != nullptr) {
+                lastNode = lastNode->next;
+            }
+
+            lastNode->next = newNode;
+        }
+    }
+    this->size = this->size + 1;
 }
 
 void LinkedList::RemoveFromHead() {
