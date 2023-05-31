@@ -92,11 +92,27 @@ void LinkedList::RemoveFromHead() {
     delete firstNode;
 }
 
-void LinkedList::RemoveFromPosition(int position) {
+void LinkedList::RemoveFromTail() {
+    if (head == nullptr) return;
 
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node *currentNode = head;
+    Node *previousNode = nullptr; // assigned as null to not have indeterminate value
+    while (currentNode->next != nullptr) {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+    }
+
+    previousNode->next = nullptr; // disconnect the link before deleting
+    delete currentNode;
 }
 
-void LinkedList::RemoveFromTail() {
+void LinkedList::RemoveFromPosition(int position) {
 
 }
 
