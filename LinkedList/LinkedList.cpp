@@ -33,13 +33,8 @@ int LinkedList::GetSize() {
 void LinkedList::InsertAtHead(int value) {
     Node *newNode = new Node(value);
 
-    if (this->head == nullptr) {
-        this->head = newNode;
-    }
-    else {
-        newNode->next = this->head;
-        this->head = newNode;
-    }
+    newNode->next = this->head;
+    this->head = newNode;
 
     this->size = this->size + 1;
 }
@@ -57,40 +52,35 @@ void LinkedList::InsertAtTail(int value) {
         }
 
         currentNode->next = newNode;
-        }
+    }
 
     this->size = this->size + 1;
     }
 
 void LinkedList::InsertAtPosition(int value, int position) {
-    Node *newNode = new Node(value);
 
     if (position == 0) {
-        newNode->next = this->head;
-        this->head = newNode;
+        InsertAtHead(value);
+        return;
     }
-    else {
-        Node *currentNode = this->head;
-        int posCounter = 0;
 
-        while (posCounter < position - 1 && currentNode != nullptr) {
-            currentNode = currentNode->next;
-            posCounter++;
-        }
-        if (currentNode != nullptr) {
-            newNode->next = currentNode->next;
-            currentNode->next = newNode;
-        }
-        else { // if position out of range, assign it at tail's place
-            Node* lastNode = this->head;
-            while (lastNode->next != nullptr) {
-                lastNode = lastNode->next;
-            }
+    Node *newNode = new Node(value);
+    Node *currentNode = head;
+    int posCounter = 0;
 
-            lastNode->next = newNode;
-        }
+    while (posCounter < position - 1 && currentNode->next != nullptr) {
+        currentNode = currentNode->next;
+        posCounter++;
     }
-    this->size = this->size + 1;
+    if (currentNode->next != nullptr) {
+        newNode->next = currentNode->next;
+        currentNode->next = newNode;
+    }
+    else { // if position out of range, assign it at tail's place
+        currentNode->next = newNode;
+    }
+
+    size = size + 1;
 }
 
 void LinkedList::RemoveFromHead() {
