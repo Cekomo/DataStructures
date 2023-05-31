@@ -84,7 +84,12 @@ void LinkedList::InsertAtPosition(int value, int position) {
 }
 
 void LinkedList::RemoveFromHead() {
+    if (head == nullptr) return;
 
+    Node *firstNode = head;
+    head = firstNode->next;
+
+    delete firstNode;
 }
 
 void LinkedList::RemoveFromPosition(int position) {
