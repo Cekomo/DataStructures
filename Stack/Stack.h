@@ -18,7 +18,7 @@ private:
 public:
     Stack();
     ~Stack();
-    void Push();
+    void Push(int value);
     void Pop();
     Node *Peek();
     bool IsEmpty();

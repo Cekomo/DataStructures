@@ -5,12 +5,22 @@ Stack::Stack() {
     size = 0;
 }
 
-void Stack::Push() {
+void Stack::Push(int value) {
+    Node *topNode = new Node(value);
+    topNode->next = head;
+    head = topNode;
 
+    size = size + 1;
 }
 
 void Stack::Pop() {
+    if (head == nullptr) return;
 
+    Node *topNode = head;
+    head = topNode->next;
+    delete topNode;
+
+    size = size - 1;
 }
 
 // Stack::Node Stack::*Peek() {
