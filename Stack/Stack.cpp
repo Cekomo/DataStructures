@@ -23,10 +23,12 @@ void Stack::Pop() {
     size = size - 1;
 }
 
-// Stack::Node Stack::*Peek() {
-//     Stack::Node *top = head;
-//     return top;
-// }
+int Stack::Peek() { // it's correct as long as data type is integer
+    if (head == nullptr) return -1;
+
+    Node *topNode = head;
+    return topNode->data;
+}
 
 bool Stack::IsEmpty() {
     //    return size == 0;
@@ -40,9 +42,9 @@ int Stack::GetSize() {
 void Stack::Clear() {
     Node *currentNode = head;
     while (currentNode != nullptr) {
-        Node *previousNode = currentNode;
-        currentNode = currentNode->next;
-        delete previousNode;
+        Node *nextNode = currentNode->next;
+        delete currentNode;
+        currentNode = nextNode;
     }
 
     head = nullptr;

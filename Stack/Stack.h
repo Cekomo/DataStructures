@@ -7,9 +7,9 @@ class Stack {
 private:
     struct Node {
         Node *next;
-        int value;
+        int data;
 
-        Node(int value);
+        Node(int data);
     };
 
     Node *head;
@@ -20,7 +20,7 @@ public:
     ~Stack();
     void Push(int value);
     void Pop();
-    Node *Peek();
+    int Peek();
     bool IsEmpty();
     int GetSize();
     void Clear();
