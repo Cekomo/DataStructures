@@ -29,15 +29,24 @@ void Stack::Pop() {
 // }
 
 bool Stack::IsEmpty() {
-
+    //    return size == 0;
+    return head == nullptr;
 }
 
 int Stack::GetSize() {
-
+    return size;
 }
 
 void Stack::Clear() {
+    Node *currentNode = head;
+    while (currentNode != nullptr) {
+        Node *previousNode = currentNode;
+        currentNode = currentNode->next;
+        delete previousNode;
+    }
 
+    head = nullptr;
+    size = 0;
 }
 
 Stack::~Stack() {}
