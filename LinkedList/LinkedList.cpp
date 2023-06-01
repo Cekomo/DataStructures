@@ -13,7 +13,6 @@ struct Node {
 
 LinkedList::LinkedList() {
     head = nullptr;
-    tail = nullptr;
     size = 0;
 }
 
@@ -142,6 +141,14 @@ void LinkedList::RemoveFromPosition(int position) {
     // head may not be handled when position=0 and multiple nodes present
     previousNode->next = currentNode->next;
     delete currentNode;
+}
+
+void LinkedList::PrintNodes() {
+    Node *currentNode = head;
+    while (currentNode != nullptr) {
+        std::cout << "Node | Address: " << currentNode << " Data: " << currentNode->data << std::endl;
+        currentNode = currentNode->next;
+    }
 }
 
 LinkedList::~LinkedList()  {

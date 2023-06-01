@@ -16,6 +16,7 @@ public:
     void RemoveFromHead();
     void RemoveFromPosition(int);
     void RemoveFromTail();
+    void PrintNodes();
 
     ~LinkedList();
 
@@ -28,7 +29,6 @@ private:
     };
 
     Node *head;
-    Node *tail; // may be trivial
     int size;
 };
 
