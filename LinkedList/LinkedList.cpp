@@ -1,5 +1,5 @@
-#include "LinkedList.h"
 #include <iostream>
+#include "LinkedList.h"
 
 struct Node {
     int data; // considering the data is a number

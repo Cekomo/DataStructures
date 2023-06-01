@@ -1,9 +1,9 @@
 #ifndef LINKEDLIST_LINKEDLIST_H
 #define LINKEDLIST_LINKEDLIST_H
 
-// NOTE: Data of nodes made by integer
+#include <iostream>
 
-class LinkedList {
+class LinkedList { // NOTE: Data of nodes made by integer
 public:
     LinkedList();
     LinkedList CreateLinkedList();
