@@ -123,6 +123,12 @@ void LinkedList::RemoveFromPosition(int position) {
         head = nullptr;
         return;
     }
+    else if (position == 0) {
+        Node *firstNode = head;
+        delete head;
+        head = firstNode->next;
+        return;
+    }
 
     Node *currentNode = head;
     Node *previousNode = nullptr;
