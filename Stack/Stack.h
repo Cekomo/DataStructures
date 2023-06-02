@@ -12,7 +12,7 @@ private:
         Node(int data);
     };
 
-    Node *head;
+    Node *top;
     int size;
 
 public:
