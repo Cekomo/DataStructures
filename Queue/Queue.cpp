@@ -1,12 +1,22 @@
 #include "Queue.h"
 
 Queue::Queue() {
+    front = nullptr;
     rear = nullptr;
     size = 0;
 }
 
 void Queue::Enqueue(int value) {
-//    Node *newNode = new Node(value);
+    Node *newNode = new Node(value);
+    if (IsEmpty()) {
+        front = newNode;
+        rear = newNode;
+    }
+    else {
+        // WHY ??
+        rear->next = newNode;
+        rear = newNode;
+    }
 }
 
 void Queue::Dequeue() {
