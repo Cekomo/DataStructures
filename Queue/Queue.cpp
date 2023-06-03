@@ -43,7 +43,7 @@ int Queue::Peek() {
     return frontNode->data;
 }
 
-bool Queue::IsEmpty() {p
+bool Queue::IsEmpty() {
     return rear == nullptr;
 }
 
@@ -52,9 +52,19 @@ int Queue::GetSize() {
 }
 
 void Queue::Clear() {
+    if (IsEmpty()) return;
 
+    Node *currentNode = front;
+    front = nullptr;
+    rear = nullptr;
+
+    while (currentNode != nullptr) {
+        Node *previousNode = currentNode;
+        currentNode = currentNode->next;
+        delete previousNode;
+    }
+
+    size = 0;
 }
 
-Queue::~Queue() {
-
-}
+Queue::~Queue() {}
