@@ -8,19 +8,28 @@ Queue::Queue() {
 
 void Queue::Enqueue(int value) {
     Node *newNode = new Node(value);
+    newNode->next = nullptr;
+
     if (IsEmpty()) {
         front = newNode;
         rear = newNode;
     }
     else {
-        // WHY ??
         rear->next = newNode;
         rear = newNode;
     }
+
+    size = size + 1;
 }
 
 void Queue::Dequeue() {
+    if (IsEmpty()) return;
 
+    Node *frontNode = front;
+    front = frontNode->next;
+    delete frontNode;
+
+    size = size - 1;
 }
 
 int Queue::Peek() {
