@@ -27,8 +27,11 @@ void Queue::Dequeue() {
 
     Node *frontNode = front;
     front = frontNode->next;
-    delete frontNode;
 
+    if (front == nullptr)
+        rear = nullptr;
+
+    delete frontNode;
     size = size - 1;
 }
 
@@ -40,7 +43,7 @@ int Queue::Peek() {
     return frontNode->data;
 }
 
-bool Queue::IsEmpty() {
+bool Queue::IsEmpty() {p
     return rear == nullptr;
 }
 
