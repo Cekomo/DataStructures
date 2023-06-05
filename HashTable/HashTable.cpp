@@ -5,8 +5,26 @@ HashTable::HashTable() {
     buckets = new Bucket[bucketSize];
 }
 
-void HashTable::Insert(int key, int data) {
+int HashTable::ComputeHashCode(std::string key) {
+    return 0;
+}
 
+// do not forget that if you LINK, you MUST handle NEXT pointer
+void HashTable::Insert(std::string key, int data) {
+    Node *newNode = new Node(key, data);
+
+    int bucketIndex = ComputeHashCode(newNode->key);
+    if (buckets[bucketIndex].head == nullptr) {
+        buckets[bucketIndex].head = newNode;
+    }
+    else {
+        Node *currentNode = buckets[bucketIndex].head;
+        while (currentNode->next != nullptr) {
+            currentNode = currentNode->next;
+        }
+
+        currentNode->next = newNode;
+    }
 }
 
 int HashTable::GetValue(int key) {

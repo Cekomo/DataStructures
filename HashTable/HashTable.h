@@ -2,15 +2,16 @@
 #define DATASTRUCTURES_HASHTABLE_H
 
 #include <iostream>
+#include <string>
 
 class HashTable {
 private:
     struct Node {
-        int key; // I am not sure if this is correct
+        std::string key; // I am not sure if this is correct
         int data;
         Node *next;
 
-        Node(int key, int data);
+        Node(std::string key, int data);
     };
 
     struct Bucket {
@@ -24,11 +25,13 @@ private:
     int nodeSize;
     Bucket *buckets;
 
+    int ComputeHashCode(std::string key);
+
 public:
     HashTable();
     ~HashTable();
 
-    void Insert(int key, int data);
+    void Insert(std::string key, int data);
     int GetValue(int key);
     void Remove(int key);
     bool ContainsKey(int key);
