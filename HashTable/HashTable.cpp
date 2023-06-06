@@ -64,9 +64,13 @@ void HashTable::Remove(std::string key) {
 bool HashTable::ContainsKey(std::string key) {
     int bucketIndex = ComputeHashCode(key);
     Node *currentNode = buckets[bucketIndex].head;
-    if (currentNode == nullptr) return 0;
+    if (currentNode == nullptr) return false;
 
-    return false;
+    while (currentNode != nullptr && currentNode->key != key) {
+        currentNode = currentNode->next;
+    }
+
+    return currentNode->key == key;
 }
 
 int HashTable::GetSize() {
