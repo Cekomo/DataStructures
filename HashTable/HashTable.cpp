@@ -82,7 +82,19 @@ bool HashTable::IsEmpty() {
 }
 
 void HashTable::Clear() {
+    for (int bucketIndex = 0; bucketIndex < bucketSize; bucketIndex++) {
+        Node *currentNode = buckets[bucketIndex].head;
 
+        while (currentNode != nullptr) {
+            Node *previousNode = currentNode;
+            currentNode = currentNode->next;
+            delete previousNode;
+        }
+
+        buckets[bucketIndex].head = nullptr;
+    }
+
+    nodeSize = 0;
 }
 
 void HashTable::Resize(int newSize) {
