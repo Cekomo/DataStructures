@@ -27,11 +27,16 @@ void HashTable::Insert(std::string key, int data) {
     }
 }
 
-int HashTable::GetValue(std::string key) { // what about receiving values at the same bucket?
+int HashTable::GetValue(std::string key) { 
     int bucketIndex = ComputeHashCode(key);
-    if (buckets[bucketIndex].head == nullptr) return 0;
+    Node *currentNode = buckets[bucketIndex].head;
+    if (currentNode == nullptr) return 0;
 
-    return buckets[bucketIndex].head->data;
+    while (currentNode->key != key) {
+        currentNode = currentNode->next;
+    }
+
+    return currentNode->data;
 }
 
 void HashTable::Remove(std::string key) {
