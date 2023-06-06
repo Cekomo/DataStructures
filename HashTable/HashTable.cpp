@@ -27,15 +27,35 @@ void HashTable::Insert(std::string key, int data) {
     }
 }
 
-int HashTable::GetValue(int key) {
-    return 0;
+int HashTable::GetValue(std::string key) { // what about receiving values at the same bucket?
+    int bucketIndex = ComputeHashCode(key);
+    if (buckets[bucketIndex].head == nullptr) return 0;
+
+    return buckets[bucketIndex].head->data;
 }
 
-void HashTable::Remove(int key) {
+void HashTable::Remove(std::string key) {
+    int bucketIndex = ComputeHashCode(key);
+    Node *currentNode = buckets[bucketIndex].head;
+    if (currentNode == nullptr) return;
 
+    Node *previousNode = nullptr;
+    while (currentNode != nullptr && currentNode->key != key) {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+    }
+
+    if (currentNode == nullptr) return;
+    if (currentNode == buckets[bucketIndex].head) // previousNode == nullptr is valid
+        buckets[bucketIndex].head = currentNode->next;
+    else
+        previousNode->next = currentNode->next;
+
+    delete currentNode;
+    nodeSize = nodeSize - 1;
 }
 
-bool HashTable::ContainsKey(int key) {
+bool HashTable::ContainsKey(std::string key) {
     return false;
 }
 

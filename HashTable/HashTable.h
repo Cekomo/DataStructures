@@ -32,9 +32,9 @@ public:
     ~HashTable();
 
     void Insert(std::string key, int data);
-    int GetValue(int key);
-    void Remove(int key);
-    bool ContainsKey(int key);
+    int GetValue(std::string key);
+    void Remove(std::string key);
+    bool ContainsKey(std::string key);
 
     int GetSize();
     bool IsEmpty();
