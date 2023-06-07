@@ -1,7 +1,6 @@
 #include "HashTable.h"
 
-HashTable::HashTable() {
-    bucketSize = 10;
+HashTable::HashTable(int bucketSize) {
     buckets = new Bucket[bucketSize];
 }
 
@@ -97,8 +96,30 @@ void HashTable::Clear() {
     nodeSize = 0;
 }
 
-void HashTable::Resize(int newSize) {
 
+void HashTable::Resize(int newSize) { // method only allows increasing bucket size
+    if (newSize < bucketSize) return;
+
+    Bucket *newBuckets = new Bucket[newSize];
+    for (int bucketIndex = 0; bucketIndex < bucketSize; bucketIndex++) {
+        Node *currentNode = buckets[bucketIndex].head;
+
+        while (currentNode != nullptr) {
+            int newBucketIndex = ComputeHashCode(currentNode->key) % newSize;
+            Node *newNode = new Node(currentNode->key, currentNode->data);
+
+            // I DID NOT UNDERSTAND HERE AND TAKE FROM GPT-3
+            newNode->next = newBuckets[newBucketIndex].head;
+            newBuckets[newBucketIndex].head = newNode;
+            // ---------------------------------------------
+
+            currentNode = currentNode->next;
+        }
+    }
+
+    delete[] buckets;
+    buckets = newBuckets;
+    bucketSize = newSize;
 }
 
 HashTable::~HashTable() {

@@ -28,7 +28,7 @@ private:
     int ComputeHashCode(std::string key);
 
 public:
-    HashTable();
+    HashTable(int bucketSize);
     ~HashTable();
 
     void Insert(std::string key, int data);
