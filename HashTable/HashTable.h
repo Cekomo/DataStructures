@@ -26,6 +26,7 @@ private:
     Bucket *buckets;
 
     int ComputeHashCode(std::string key);
+    int GetDigit(int, int);
 
 public:
     HashTable(int bucketSize);
