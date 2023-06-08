@@ -139,6 +139,8 @@ void HashTable::Resize(int newSize) { // method only allows increasing bucket si
             Node *newNode = new Node(currentNode->key, currentNode->data);
 
             // I DID NOT UNDERSTAND HERE AND TAKE FROM GPT-3
+            // I understood now, unlike what I tried to do, it assigned newNode to the head..
+            //...of the bucket and assign the existing as the next pointer when chaining occurs
             newNode->next = newBuckets[newBucketIndex].head;
             newBuckets[newBucketIndex].head = newNode;
             // ---------------------------------------------
