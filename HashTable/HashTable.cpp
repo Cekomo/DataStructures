@@ -4,7 +4,23 @@ HashTable::HashTable(int bucketSize) {
     buckets = new Bucket[bucketSize];
 }
 
+// key is assumed as array of chars, names in real life
 int HashTable::ComputeHashCode(std::string key) {
+    int keyLength = key.length();
+    if (keyLength < 2) return 0;
+
+    // capital letter existence is NOT handled
+    int firstLetterIndex = (int)key[0] - 96;
+    int secondLastLetterIndex = (int)key[keyLength-2] - 96;
+    int lastLetterIndex = (int)key[keyLength-1] - 96;
+
+    int keyLetterSum = 0;
+    for (int i = 0; i < keyLength; i++) {
+        keyLetterSum += ((int)key[i] - 96);
+    }
+
+    int hashCode = firstLetterIndex * 1000000 + keyLetterSum * 10000 + secondLastLetterIndex * 100 + lastLetterIndex;
+
     return 0;
 }
 
