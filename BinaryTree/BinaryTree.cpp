@@ -12,8 +12,20 @@ void BinaryTree::Remove() {
 
 }
 
-int BinaryTree::Search() {
-    return 0;
+bool BinaryTree::Search(int key) {
+    if (root == nullptr) return false;
+    Node *currentNode = root;
+
+    while (currentNode != nullptr) {
+        if (key < currentNode->data)
+            currentNode = currentNode->leftChild;
+        else if (key > currentNode->data)
+            currentNode = currentNode->rightChild;
+        else
+            return true;
+    }
+
+    return false;
 }
 
 int BinaryTree::GetTreeHeight() {
