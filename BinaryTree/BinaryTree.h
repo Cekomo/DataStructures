@@ -13,10 +13,14 @@ private:
         Node(int data);
     };
 
+    Node *root;
+
 public:
+    BinaryTree();
+    ~BinaryTree();
     void Insert(int data);
     void Remove();
-    bool Search();
+    int Search();
     int GetTreeHeight();
     int GetNodeLevel();
     int GetTreeSize();
