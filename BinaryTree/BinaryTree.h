@@ -21,7 +21,7 @@ public:
     void Insert(int data);
     void Remove();
     bool Search(int);
-    int GetTreeHeight();
+    int GetTreeHeight(Node*);
     int GetNodeLevel();
     int GetTreeSize();
 };

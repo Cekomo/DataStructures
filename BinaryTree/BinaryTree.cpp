@@ -28,8 +28,14 @@ bool BinaryTree::Search(int key) {
     return false;
 }
 
-int BinaryTree::GetTreeHeight() {
-    return 0;
+int BinaryTree::GetTreeHeight(Node *currentNode) {
+    if (currentNode == nullptr) return -1;
+
+    int leftHeight = BinaryTree::GetTreeHeight(currentNode->leftChild);
+    int rightHeight = BinaryTree::GetTreeHeight(currentNode->rightChild);
+
+    if (leftHeight > rightHeight) return leftHeight + 1;
+    return rightHeight + 1;
 }
 
 int BinaryTree::GetNodeLevel() {
