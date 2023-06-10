@@ -8,7 +8,7 @@ private:
     struct Node {
         Node *leftChild = nullptr;
         Node *rightChild = nullptr;
-        int data = 0; // data is a value
+        int data; // data is a value
 
         Node(int data);
     };

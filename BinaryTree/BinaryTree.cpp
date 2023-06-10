@@ -5,7 +5,34 @@ BinaryTree::BinaryTree() {
 }
 
 void BinaryTree::Insert(int data) {
+    Node *newNode = new Node(data);
+    Node *currentNode = root;
+    if (currentNode == nullptr) {
+        root = newNode;
+        return;
+    }
 
+    Node *previousNode = nullptr;
+    while (currentNode != nullptr) {
+        previousNode = currentNode;
+        if (data < currentNode->data) {
+            currentNode = currentNode->leftChild;
+        }
+        else if (data > currentNode->data) {
+            currentNode = currentNode->rightChild;
+        }
+        else {
+            delete newNode;
+            return;
+        }
+    }
+
+    if (data < previousNode->data) {
+        previousNode->leftChild = newNode;
+    }
+    else if (data > previousNode->data) {
+        previousNode->rightChild = newNode;
+    }
 }
 
 void BinaryTree::Remove() {
@@ -64,7 +91,7 @@ int BinaryTree::GetTreeSize(Node *currentNode) {
 
     int treeSizeLeft = GetTreeSize(currentNode->rightChild);
     int treeSizeRight = GetTreeSize(currentNode->leftChild);
-    
+
     return treeSizeLeft + treeSizeRight + 1;
 }
 
