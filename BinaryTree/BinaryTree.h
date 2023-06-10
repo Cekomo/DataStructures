@@ -23,7 +23,7 @@ public:
     bool Search(int);
     int GetTreeHeight(Node*);
     int GetNodeDepth(Node*);
-    int GetTreeSize();
+    int GetTreeSize(Node*);
 };
 
 #endif //DATASTRUCTURES_BINARYTREE_H
