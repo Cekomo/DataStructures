@@ -38,8 +38,25 @@ int BinaryTree::GetTreeHeight(Node *currentNode) {
     return rightHeight + 1;
 }
 
-int BinaryTree::GetNodeLevel() {
-    return 0;
+int BinaryTree::GetNodeDepth(Node *node) {
+    Node *currentNode = root;
+    if (root == nullptr) return -1;
+    int nodeDepth = 0;
+
+    while (currentNode != nullptr) {
+        if (node->data < currentNode->data) {
+            currentNode = currentNode->leftChild;
+            nodeDepth++;
+        }
+        else if (node->data > currentNode->data) {
+            currentNode = currentNode->rightChild;
+            nodeDepth++;
+        }
+        else
+            return nodeDepth;
+    }
+
+    return -1;
 }
 
 int BinaryTree::GetTreeSize() {

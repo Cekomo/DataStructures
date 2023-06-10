@@ -22,7 +22,7 @@ public:
     void Remove();
     bool Search(int);
     int GetTreeHeight(Node*);
-    int GetNodeLevel();
+    int GetNodeDepth(Node*);
     int GetTreeSize();
 };
 
