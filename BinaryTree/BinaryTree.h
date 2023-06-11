@@ -18,8 +18,8 @@ private:
 public:
     BinaryTree();
     ~BinaryTree();
-    void Insert(int data);
-    void Remove();
+    void Insert(int);
+    void Remove(int);
     bool Search(int);
     int GetTreeHeight(Node*);
     int GetNodeDepth(Node*);

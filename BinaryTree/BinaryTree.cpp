@@ -4,8 +4,8 @@ BinaryTree::BinaryTree() {
     root = nullptr;
 }
 
-void BinaryTree::Insert(int data) {
-    Node *newNode = new Node(data);
+void BinaryTree::Insert(int key) {
+    Node *newNode = new Node(key);
     Node *currentNode = root;
     if (currentNode == nullptr) {
         root = newNode;
@@ -18,7 +18,7 @@ void BinaryTree::Insert(int data) {
         if (data < currentNode->data) {
             currentNode = currentNode->leftChild;
         }
-        else if (data > currentNode->data) {
+        else if (key > currentNode->data) {
             currentNode = currentNode->rightChild;
         }
         else {
@@ -27,15 +27,47 @@ void BinaryTree::Insert(int data) {
         }
     }
 
-    if (data < previousNode->data) {
+    if (key < previousNode->data) {
         previousNode->leftChild = newNode;
     }
-    else if (data > previousNode->data) {
+    else if (key > previousNode->data) {
         previousNode->rightChild = newNode;
     }
 }
 
-void BinaryTree::Remove() {
+void BinaryTree::Remove(int key) {
+    Node *currentNode = root;
+    if (currentNode == nullptr) return;
+
+    Node *previousNode = nullptr;
+    while (currentNode != nullptr) {
+        if (key < currentNode->data) {
+            previousNode = currentNode;
+            currentNode = currentNode->leftChild;
+        }
+        else if (key > currentNode->data) {
+            previousNode = currentNode;
+            currentNode = currentNode->rightChild;
+        }
+        else
+            break;
+    }
+    if (currentNode == nullptr) return;
+
+    // handle the leaf removal
+    if (currentNode->leftChild == nullptr && currentNode->rightChild == nullptr) {
+        if (previousNode == nullptr)
+            root = nullptr;
+        else if (previousNode->leftChild == currentNode)
+            previousNode->leftChild = nullptr;
+        else if (previousNode->rightChild == currentNode)
+            previousNode->rightChild = nullptr;
+
+        delete currentNode;
+    }
+
+    // handle the parent removal
+    
 
 }
 
