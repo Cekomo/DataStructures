@@ -15,7 +15,7 @@ void BinaryTree::Insert(int key) {
     Node *previousNode = nullptr;
     while (currentNode != nullptr) {
         previousNode = currentNode;
-        if (data < currentNode->data) {
+        if (key < currentNode->data) {
             currentNode = currentNode->leftChild;
         }
         else if (key > currentNode->data) {
@@ -65,10 +65,26 @@ void BinaryTree::Remove(int key) {
 
         delete currentNode;
     }
+    else {
+        Node *closestNode = nullptr;
+        int keyValueDifference = 0;
+
+    }
 
     // handle the parent removal
-    
 
+
+}
+
+int BinaryTree::GetClosestNode(Node *targetNode, Node *currentNode) {
+    if (currentNode == nullptr) return 0;
+
+    int leftNode = GetClosestNode(targetNode, currentNode->leftChild);
+    int rightNode = GetClosestNode(targetNode, currentNode->rightChild);
+
+
+
+    return 0;
 }
 
 bool BinaryTree::Search(int key) {
@@ -83,6 +99,10 @@ bool BinaryTree::Search(int key) {
         else
             return true;
     }
+
+
+
+    
 
     return false;
 }
