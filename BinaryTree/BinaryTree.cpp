@@ -52,44 +52,32 @@ void BinaryTree::Remove(int key) {
         else
             break;
     }
-    if (currentNode == nullptr) return;
 
-    // handle the leaf removal
-    if (currentNode->leftChild == nullptr && currentNode->rightChild == nullptr) {
-        if (previousNode == nullptr)
-            root = nullptr;
-        else if (previousNode->leftChild == currentNode)
-            previousNode->leftChild = nullptr;
-        else if (previousNode->rightChild == currentNode)
-            previousNode->rightChild = nullptr;
-
+    if (previousNode == nullptr) {
         delete currentNode;
+        return;
+    }
+
+    int leftValueDiff = std::abs(currentNode->data - currentNode->leftChild->data);
+    int rightValueDiff = std::abs(currentNode->data - currentNode->rightChild->data);
+    if (leftValueDiff < rightValueDiff) {
+        if (previousNode->leftChild == currentNode)
+            previousNode->leftChild = currentNode->leftChild;
+        else
+            previousNode->rightChild = currentNode->leftChild;
     }
     else {
-        Node *closestNode = nullptr;
-        int keyValueDifference = 0;
-
+        if (previousNode->leftChild == currentNode)
+            previousNode->leftChild = currentNode->rightChild;
+        else
+            previousNode->rightChild = currentNode->rightChild;
     }
-
-    // handle the parent removal
-
-
 }
 
-int BinaryTree::GetClosestNode(Node *targetNode, Node *currentNode) {
-    if (currentNode == nullptr) return 0;
-
-    int leftNode = GetClosestNode(targetNode, currentNode->leftChild);
-    int rightNode = GetClosestNode(targetNode, currentNode->rightChild);
-
-
-
-    return 0;
-}
 
 bool BinaryTree::Search(int key) {
-    if (root == nullptr) return false;
     Node *currentNode = root;
+    if (currentNode == nullptr) return false;
 
     while (currentNode != nullptr) {
         if (key < currentNode->data)
@@ -99,10 +87,6 @@ bool BinaryTree::Search(int key) {
         else
             return true;
     }
-
-
-
-    
 
     return false;
 }

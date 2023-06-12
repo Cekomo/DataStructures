@@ -20,7 +20,6 @@ public:
     ~BinaryTree();
     void Insert(int);
     void Remove(int);
-    int GetClosestNode(Node*, Node*);
     bool Search(int);
     int GetTreeHeight(Node*);
     int GetNodeDepth(Node*);
