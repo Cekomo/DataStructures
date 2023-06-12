@@ -37,40 +37,59 @@ void BinaryTree::Insert(int key) {
 
 void BinaryTree::Remove(int key) {
     Node *currentNode = root;
+    Node *previousNode = nullptr;
+
+    while (currentNode != nullptr && currentNode->data != key) {
+        previousNode = currentNode;
+        if (key < currentNode->data)
+            currentNode = currentNode->leftChild;
+        else
+            currentNode = currentNode->rightChild;
+    }
+
     if (currentNode == nullptr) return;
 
-    Node *previousNode = nullptr;
-    while (currentNode != nullptr) {
-        if (key < currentNode->data) {
-            previousNode = currentNode;
-            currentNode = currentNode->leftChild;
-        }
-        else if (key > currentNode->data) {
-            previousNode = currentNode;
-            currentNode = currentNode->rightChild;
-        }
+    if (currentNode->leftChild == nullptr && currentNode->rightChild == nullptr) {
+        if (previousNode == nullptr)
+            root = nullptr;
+        else if (previousNode->leftChild == currentNode)
+            previousNode->leftChild = nullptr;
         else
-            break;
-    }
+            previousNode->rightChild = nullptr;
 
-    if (previousNode == nullptr) {
         delete currentNode;
-        return;
     }
+    else if (currentNode->leftChild == nullptr || currentNode->rightChild == nullptr) {
+        Node* childNode = (currentNode->leftChild != nullptr) ? currentNode->leftChild : currentNode->rightChild;
 
-    int leftValueDiff = std::abs(currentNode->data - currentNode->leftChild->data);
-    int rightValueDiff = std::abs(currentNode->data - currentNode->rightChild->data);
-    if (leftValueDiff < rightValueDiff) {
-        if (previousNode->leftChild == currentNode)
-            previousNode->leftChild = currentNode->leftChild;
+        if (previousNode == nullptr)
+            root = childNode;
+        else if (previousNode->leftChild == currentNode)
+            previousNode->leftChild = childNode;
         else
-            previousNode->rightChild = currentNode->leftChild;
+            previousNode->rightChild = childNode;
+
+        delete currentNode;
     }
-    else {
-        if (previousNode->leftChild == currentNode)
-            previousNode->leftChild = currentNode->rightChild;
+    else { // taken from Chat-GPT (else statement) to handle nodes having 2 children
+        Node* successorNode = currentNode->rightChild;
+        Node* successorParent = currentNode;
+
+        // Find the minimum node in the right subtree (successor)
+        while (successorNode->leftChild != nullptr) {
+            successorParent = successorNode;
+            successorNode = successorNode->leftChild;
+        }
+
+        if (successorParent != currentNode)
+            successorParent->leftChild = successorNode->rightChild;
         else
-            previousNode->rightChild = currentNode->rightChild;
+            successorParent->rightChild = successorNode->rightChild;
+
+        // Replace the node's data with the successor's data
+        currentNode->data = successorNode->data;
+
+        delete successorNode;
     }
 }
 
