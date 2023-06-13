@@ -6,11 +6,11 @@
 class BinaryTree {
 private:
     struct Node {
-        Node *leftChild = nullptr;
-        Node *rightChild = nullptr;
+        Node *leftChild;
+        Node *rightChild;
         int data; // data is a value
 
-        Node(int data);
+        Node(int data) : leftChild(nullptr), rightChild(nullptr), data(data) {}
     };
 
     Node *root;
@@ -21,6 +21,8 @@ public:
     void Insert(int);
     void Remove(int);
     bool Search(int);
+    void FixBalance();
+    int GetShortestNode(Node*);
     int GetTreeHeight(Node*);
     int GetNodeDepth(Node*);
     int GetTreeSize(Node*);

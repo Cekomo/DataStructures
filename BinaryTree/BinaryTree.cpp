@@ -93,6 +93,20 @@ void BinaryTree::Remove(int key) {
     }
 }
 
+void BinaryTree::FixBalance() {
+    // first, need to reach all the leaves that tree has
+    int longestNode = GetTreeHeight(root);
+    int shortestNode = GetShortestNode(root);
+
+
+    // then calculate the each depth and compare them
+    // if depth difference between nodes is more than 1,
+    //..rebalancing operation is required
+}
+
+int BinaryTree::GetShortestNode(Node* currentNode) {
+
+}
 
 bool BinaryTree::Search(int key) {
     Node *currentNode = root;
