@@ -95,16 +95,14 @@ void BinaryTree::Remove(int key) {
 
 void BinaryTree::FixBalance() {
     if (root == nullptr) return;
-    // first, need to reach all the leaves that tree has
+
     int longestNode = BinaryTree::GetTreeHeight(root);
     int shortestNode = BinaryTree::GetShortestNode(root);
     if (std::abs(longestNode - shortestNode) < 2) return;
 
+    // I WILL COME HERE AFTER LEARNING ALGORITHMS AND COMPLETE IT
 
-
-    // then calculate of each depth and compare them
-    // if depth difference between nodes is more than 1,
-    //..rebalancing operation is required
+    BinaryTree::FixBalance(); // step is added to make sure process continues until tree is balanced
 }
 
 int BinaryTree::GetShortestNode(Node* currentNode) {

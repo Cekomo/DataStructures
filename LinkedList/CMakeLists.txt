@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
-project(LinkedList)
+project(.)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LinkedList main.cpp LinkedList.cpp LinkedList.h)
+add_executable(. main.cpp LinkedList.cpp LinkedList.h)
